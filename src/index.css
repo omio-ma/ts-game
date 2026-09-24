@@ -33,10 +33,13 @@ body {
   background: var(--bg);
 }
 
-.landing {
+.page {
   max-width: 40rem;
   margin: 0 auto;
   padding: 4rem 1rem 2rem;
+}
+
+.landing {
   text-align: center;
 }
 
@@ -52,21 +55,44 @@ h1 {
   margin: 0 0 2.5rem;
 }
 
-.coming-soon {
+.games,
+.placeholder {
   background: var(--card);
-  border: 1px dashed var(--border);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1.5rem 1rem;
 }
 
-.coming-soon h2 {
-  margin: 0 0 0.25rem;
+.games h2 {
+  margin: 0 0 1rem;
   font-size: 1.25rem;
 }
 
-.coming-soon p {
+.placeholder p {
   margin: 0;
   color: var(--muted);
+}
+
+.button {
+  display: inline-block;
+  min-width: 12rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-decoration: none;
+}
+
+.button:hover {
+  filter: brightness(1.1);
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
 }
 
 footer {
