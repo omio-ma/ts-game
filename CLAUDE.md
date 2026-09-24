@@ -4,6 +4,8 @@ React + TypeScript + Vite static site, deployed to GitHub Pages from `main`
 (`.github/workflows/deploy.yml`). The repo is public and everything in the
 built bundle is public.
 
+See `docs/next-steps.md` for the current plan and what to pick up next.
+
 ## Rules: no sensitive information
 
 - Never commit secrets: API keys, tokens, passwords, private keys, `.env`
