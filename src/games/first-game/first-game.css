@@ -1,0 +1,334 @@
+.fm h1 {
+  margin-bottom: 0.75rem;
+}
+
+.fm h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem;
+}
+
+.fm-intro,
+.fm-muted {
+  color: var(--muted);
+}
+
+.fm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.fm-field input {
+  font: inherit;
+  font-weight: 400;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--fg);
+}
+
+.fm-summary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin: 0 -1rem 1rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+
+.fm-group {
+  margin-bottom: 1.25rem;
+}
+
+.fm-players,
+.fm-events,
+.fm-squad {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fm-players {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.fm-player {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+  text-align: left;
+  color: var(--fg);
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.fm-player.selected {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--card));
+}
+
+.fm-player:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.fm-rating {
+  min-width: 2.25rem;
+  padding: 0.15rem 0;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 700;
+  background: var(--border);
+}
+
+.fm-name {
+  flex: 1;
+}
+
+.fm-price {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.fm-actions {
+  position: sticky;
+  bottom: 0;
+  padding: 1rem 0;
+  background: var(--bg);
+  text-align: center;
+}
+
+.fm-hint {
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: none;
+}
+
+.button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.button.secondary {
+  background: transparent;
+  color: var(--accent);
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+
+.link-button {
+  margin-top: 1rem;
+  padding: 0;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--muted);
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.fm-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.fm-matchday {
+  margin: 0 0 0.25rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.fm-next span {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.fm-tactics {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 10px;
+  background: var(--border);
+}
+
+.fm-tactics button {
+  flex: 1;
+  padding: 0.5rem 0.25rem;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--fg);
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.fm-tactics button.active {
+  background: var(--card);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 15%);
+}
+
+.fm-strength {
+  margin: 0.5rem 0 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.fm-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.fm-score {
+  font-size: 1.15rem;
+  margin: 0 0 0.75rem;
+}
+
+.fm-score strong {
+  font-size: 1.4rem;
+}
+
+.fm-events {
+  display: grid;
+  gap: 0.35rem;
+  text-align: left;
+  max-width: 20rem;
+  margin: 0 auto;
+}
+
+.fm-events li {
+  color: var(--muted);
+}
+
+.fm-events li.mine {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.fm-minute {
+  display: inline-block;
+  min-width: 2.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.fm-badge {
+  display: inline-block;
+  width: 1.6rem;
+  line-height: 1.6rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  color: #fff;
+}
+
+.fm-badge.W {
+  background: #2f9e44;
+}
+
+.fm-badge.D {
+  background: #868e96;
+}
+
+.fm-badge.L {
+  background: #e03131;
+}
+
+.fm-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+
+.fm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.fm-table th,
+.fm-table td {
+  padding: 0.4rem 0.2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.fm-table th {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.fm-table .team {
+  text-align: left;
+  width: 100%;
+}
+
+.fm-table tr.mine td {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  font-weight: 600;
+}
+
+.fm-squad {
+  display: grid;
+  gap: 0.4rem;
+  text-align: left;
+}
+
+.fm-squad li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.fm-pos {
+  min-width: 2.5rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.fm-final-position {
+  font-size: 1.25rem;
+}
+
+.fm-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
