@@ -10,13 +10,14 @@ const MAX_DT = 1 / 20
 
 function Stranded() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const runRef = useRef<HTMLButtonElement>(null)
   const [moved, setMoved] = useState(false)
 
   useEffect(() => {
     const canvas = canvasRef.current!
     const ctx = canvas.getContext('2d')!
     const map = generateMap()
-    const input = createInput(canvas)
+    const input = createInput(canvas, runRef.current!)
     let pilot = newPilot(map.spawn.x, map.spawn.y)
     let viewW = 0
     let viewH = 0
@@ -68,8 +69,13 @@ function Stranded() {
       <a className="stranded-back" href="#/">
         ← Games
       </a>
+      {/* Only shown on touch screens (see stranded.css); Shift does this on a keyboard. */}
+      <button ref={runRef} type="button" className="stranded-run">
+        Run
+      </button>
       <p className={`stranded-hint${moved ? ' stranded-hint-hidden' : ''}`}>
-        Move with WASD or the arrow keys, hold Shift to run. On a touch screen, press and drag.
+        <span className="stranded-hint-keys">Move with WASD or the arrow keys, hold Shift to run.</span>
+        <span className="stranded-hint-touch">Press anywhere and drag to move, hold Run to sprint.</span>
       </p>
     </main>
   )

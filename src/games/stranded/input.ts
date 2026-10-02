@@ -23,13 +23,16 @@ export interface Joystick {
 }
 
 /**
- * WASD / arrow keys on desktop (Shift to run), and a virtual joystick on touch
- * screens: press anywhere and drag. Both produce one direction of length 0..1.
+ * WASD / arrow keys on desktop (Shift to run), and on touch screens a virtual
+ * joystick (press anywhere and drag) plus a Run button to hold with the other
+ * thumb. Both produce one direction of length 0..1.
  */
-export function createInput(canvas: HTMLCanvasElement) {
+export function createInput(canvas: HTMLCanvasElement, runButton: HTMLElement) {
   const pressed = new Set<string>()
   let pointerId: number | null = null
   let stick: Joystick | null = null
+  // Pointers currently holding the Run button.
+  const runPointers = new Set<number>()
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') pressed.add(e.code)
@@ -38,7 +41,11 @@ export function createInput(canvas: HTMLCanvasElement) {
     e.preventDefault()
   }
   const onKeyUp = (e: KeyboardEvent) => pressed.delete(e.code)
-  const onBlur = () => pressed.clear()
+  const onBlur = () => {
+    pressed.clear()
+    runPointers.clear()
+    setRunHeld()
+  }
 
   const local = (e: PointerEvent): Vec => {
     const rect = canvas.getBoundingClientRect()
@@ -71,6 +78,27 @@ export function createInput(canvas: HTMLCanvasElement) {
     stick = null
   }
 
+  const setRunHeld = () => {
+    if (runPointers.size > 0) runButton.dataset.held = ''
+    else delete runButton.dataset.held
+  }
+  const onRunDown = (e: PointerEvent) => {
+    e.preventDefault()
+    runPointers.add(e.pointerId)
+    try {
+      runButton.setPointerCapture(e.pointerId)
+    } catch {
+      // ignore, as for the joystick
+    }
+    setRunHeld()
+  }
+  const onRunUp = (e: PointerEvent) => {
+    runPointers.delete(e.pointerId)
+    setRunHeld()
+  }
+  // A long press would otherwise open the browser's context menu.
+  const onRunMenu = (e: Event) => e.preventDefault()
+
   window.addEventListener('keydown', onKeyDown)
   window.addEventListener('keyup', onKeyUp)
   window.addEventListener('blur', onBlur)
@@ -78,6 +106,10 @@ export function createInput(canvas: HTMLCanvasElement) {
   canvas.addEventListener('pointermove', onPointerMove)
   canvas.addEventListener('pointerup', onPointerUp)
   canvas.addEventListener('pointercancel', onPointerUp)
+  runButton.addEventListener('pointerdown', onRunDown)
+  runButton.addEventListener('pointerup', onRunUp)
+  runButton.addEventListener('pointercancel', onRunUp)
+  runButton.addEventListener('contextmenu', onRunMenu)
 
   return {
     direction(): Vec {
@@ -95,8 +127,8 @@ export function createInput(canvas: HTMLCanvasElement) {
       }
       return clampDirection({ x: Math.sign(x), y: Math.sign(y) })
     },
-    /** Shift held: run. */
-    running: () => pressed.has('ShiftLeft') || pressed.has('ShiftRight'),
+    /** Shift or the Run button held: run. */
+    running: () => pressed.has('ShiftLeft') || pressed.has('ShiftRight') || runPointers.size > 0,
     joystick: () => stick,
     dispose() {
       window.removeEventListener('keydown', onKeyDown)
@@ -106,6 +138,10 @@ export function createInput(canvas: HTMLCanvasElement) {
       canvas.removeEventListener('pointermove', onPointerMove)
       canvas.removeEventListener('pointerup', onPointerUp)
       canvas.removeEventListener('pointercancel', onPointerUp)
+      runButton.removeEventListener('pointerdown', onRunDown)
+      runButton.removeEventListener('pointerup', onRunUp)
+      runButton.removeEventListener('pointercancel', onRunUp)
+      runButton.removeEventListener('contextmenu', onRunMenu)
     },
   }
 }

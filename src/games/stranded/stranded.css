@@ -47,3 +47,55 @@
 .stranded-hint-hidden {
   opacity: 0;
 }
+
+/* Run button for touch screens: hold it with one thumb while steering with the other. */
+.stranded-run {
+  position: absolute;
+  right: max(1.25rem, env(safe-area-inset-right));
+  bottom: max(1.75rem, env(safe-area-inset-bottom));
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 245, 235, 0.55);
+  background: rgba(60, 25, 15, 0.5);
+  color: #fff5eb;
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.stranded-run[data-held] {
+  background: rgba(232, 116, 59, 0.75);
+  border-color: #fff5eb;
+  transform: scale(0.94);
+}
+
+/* Show either the keyboard or the touch controls, depending on the device. */
+.stranded-hint-touch {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .stranded-run {
+    display: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .stranded-hint {
+    bottom: max(7.5rem, calc(env(safe-area-inset-bottom) + 6rem));
+  }
+
+  .stranded-hint-keys {
+    display: none;
+  }
+
+  .stranded-hint-touch {
+    display: inline;
+  }
+}

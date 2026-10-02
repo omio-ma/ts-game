@@ -129,8 +129,8 @@ without touching the game logic.
 - *(Done.)* Running: hold Shift to run (1.75× speed) using stamina. A full bar lasts
   4 s; it recharges while walking (10 s to full) and faster standing still (3 s).
   Running out leaves her tired until it's back to 30%. A small bar above her head
-  shows stamina when it isn't full (red when tired). There's no way to run on a
-  phone yet: needs a run button or similar.
+  shows stamina when it isn't full (red when tired). On touch screens, a Run button
+  in the bottom-right corner does the same as Shift: hold it while steering.
 - Footprints or little dust puffs that fade behind her.
 - Drifting dust particles, and a slow day-to-dusk colour shift.
 - Map bigger than the screen with a few landmarks to find (a strange monolith,
