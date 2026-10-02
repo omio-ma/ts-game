@@ -1,4 +1,5 @@
 import FirstGame from './games/first-game/FirstGame'
+import Stranded from './games/stranded/Stranded'
 import { useHashRoute } from './useHashRoute'
 
 function Landing() {
@@ -10,6 +11,9 @@ function Landing() {
         <h2>Games</h2>
         <a className="button" href="#/first-game">
           First game
+        </a>
+        <a className="button" href="#/stranded">
+          Stranded
         </a>
       </section>
       <footer>
@@ -25,6 +29,8 @@ function App() {
   switch (route) {
     case '/first-game':
       return <FirstGame />
+    case '/stranded':
+      return <Stranded />
     default:
       return <Landing />
   }
